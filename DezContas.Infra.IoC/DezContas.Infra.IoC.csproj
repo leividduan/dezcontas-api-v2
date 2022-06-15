@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DezContas.Application\DezContas.Application.csproj" />
     <ProjectReference Include="..\DezContas.Infra.Data\DezContas.Infra.Data.csproj" />
   </ItemGroup>
 
