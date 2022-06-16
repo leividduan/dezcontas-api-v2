@@ -15,6 +15,7 @@ namespace DezContas.Domain.Entities
 
 		public Entity()
 		{
+			Id = Guid.NewGuid();
 			var now = DateTime.Now;
 			CreatedAt = now;
 			UpdatedAt = now;

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DezContas.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DezContas.Infra.Data
 {
@@ -6,6 +7,8 @@ namespace DezContas.Infra.Data
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options)
 			: base(options) { }
+
+		public DbSet<User> User { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

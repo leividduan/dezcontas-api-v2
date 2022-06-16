@@ -1,9 +1,8 @@
 ﻿using DezContas.Domain.Interfaces.Repositories;
-using DezContas.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DezContas.Data.Repositories
+namespace DezContas.Infra.Data.Repositories
 {
 	public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
 	{

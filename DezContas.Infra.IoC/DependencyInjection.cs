@@ -1,6 +1,6 @@
-﻿using DezContas.Data.Repositories;
-using DezContas.Domain.Interfaces.Repositories;
+﻿using DezContas.Domain.Interfaces.Repositories;
 using DezContas.Infra.Data;
+using DezContas.Infra.Data.Repositories;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +30,7 @@ namespace DezContas.Infra.IoC
 		public static IServiceCollection AddRepositories(this IServiceCollection services)
 		{
 			services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+			services.AddScoped<IUserRepository, UserRepository>();
 
 			return services;
 		}

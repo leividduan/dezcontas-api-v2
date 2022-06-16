@@ -24,8 +24,4 @@
     <ProjectReference Include="..\DezContas.Domain\DezContas.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
 </Project>
