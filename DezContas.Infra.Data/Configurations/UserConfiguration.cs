@@ -15,7 +15,7 @@ namespace DezContas.Infra.Data.Configurations
 				.IsRequired()
 				.HasMaxLength(150);
 
-			builder.Property(x => x.AtSign)
+			builder.Property(x => x.Username)
 				.IsRequired()
 				.HasMaxLength(50);
 
@@ -25,13 +25,13 @@ namespace DezContas.Infra.Data.Configurations
 
 			builder.Property(x => x.Password)
 				.IsRequired()
-				.HasMaxLength(200);
+				.HasMaxLength(500);
 
 			// Relationships
 
 
 			// Indexes
-			builder.HasIndex(x => x.AtSign)
+			builder.HasIndex(x => x.Username)
 				.IsUnique();
 
 			builder.HasIndex(x => x.Email)

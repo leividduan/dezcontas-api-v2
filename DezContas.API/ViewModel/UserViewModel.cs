@@ -3,7 +3,7 @@
 	public record UserViewModel(
 		Guid Id,
 		string Name,
-		string AtSign,
+		string Username,
 		string Email,
 		bool IsActive,
 		DateTime CreatedAt,
@@ -12,7 +12,7 @@
 
 	public record UserPostViewModel(
 		string Name,
-		string AtSign,
+		string Username,
 		string Email,
 		string Password
 	);
@@ -20,7 +20,7 @@
 	public record UserPutViewModel(
 		Guid Id,
 		string Name,
-		string AtSign,
+		string Username,
 		string Password,
 		bool IsActive
 	);

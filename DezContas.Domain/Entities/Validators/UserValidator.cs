@@ -11,7 +11,7 @@ namespace DezContas.Domain.Entities.Validators
 				.MinimumLength(3).WithMessage("Minimum length must be 3 characters")
 				.MaximumLength(100).WithMessage("Maximum length must be 100 characters");
 
-			RuleFor(x => x.AtSign).NotNull().NotNull().WithMessage("AtSign is required")
+			RuleFor(x => x.Username).NotNull().NotNull().WithMessage("Username is required")
 				.MinimumLength(3).WithMessage("Minimum length must be 3 characters")
 				.MaximumLength(50).WithMessage("Maximum length must be 50 characters");
 
