@@ -15,6 +15,7 @@ namespace PlayPedidos.API.DTOs.Mappings
 			CreateMap<User, UserViewModel>().ReverseMap();
 			CreateMap<User, UserPostViewModel>().ReverseMap();
 			CreateMap<User, UserPutViewModel>().ReverseMap();
+			CreateMap<User, UserLoginViewModel>().ReverseMap();
 		}
 	}
 }

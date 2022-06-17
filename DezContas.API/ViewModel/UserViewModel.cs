@@ -24,4 +24,9 @@
 		string Password,
 		bool IsActive
 	);
+
+	public record UserLoginViewModel(
+		string Username,
+		string Password
+	);
 }

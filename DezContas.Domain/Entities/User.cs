@@ -10,17 +10,19 @@ namespace DezContas.Domain.Entities
 		public string Username { get; set; }
 		public string Email { get; set; }
 		public string Password { get; set; }
+		public bool IsActive { get; set; }
 
 		public User()
 		{
 		}
 
-		public User(string name, string username, string email, string password)
+		public User(string name, string username, string email, string password, bool isActive)
 		{
 			Name = name;
 			Username = username;
 			Email = email;
 			Password = password;
+			IsActive = isActive;
 		}
 
 		public string HashPassword(string password)
