@@ -1,4 +1,6 @@
-﻿using DezContas.Domain.Interfaces.Repositories;
+﻿using DezContas.Application.Interfaces;
+using DezContas.Application.Services;
+using DezContas.Domain.Interfaces.Repositories;
 using DezContas.Infra.Data;
 using DezContas.Infra.Data.Repositories;
 using FluentValidation;
@@ -38,6 +40,7 @@ namespace DezContas.Infra.IoC
 		public static IServiceCollection AddServices(this IServiceCollection services)
 		{
 			services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
+			services.AddScoped<IUserService, UserService>();
 
 			return services;
 		}
