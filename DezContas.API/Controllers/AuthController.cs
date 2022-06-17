@@ -33,10 +33,11 @@ namespace DezContas.API.Controllers
 			if (user == null)
 				return BadRequest();
 
-			if (!user.IsValid())
+			if (!(user.IsValid() && await _userService.ValidateUsernameAndEmail(user)))
 				return BadRequest(_mapper.Map<ErrorViewModel>(user.GetErrors()));
 
 			user.Password = user.HashPassword(user.Password);
+			user.IsActive = true;
 
 			await _userService.Add(user);
 
@@ -44,7 +45,8 @@ namespace DezContas.API.Controllers
 			return Ok(newUserViewModel);
 		}
 
-		[HttpPost("Login")]
+		[Route("login")]
+		[HttpPost]
 		[AllowAnonymous]
 		public async Task<ActionResult<dynamic>> Login([FromBody] UserLoginViewModel userViewModel)
 		{
@@ -53,7 +55,7 @@ namespace DezContas.API.Controllers
 			if (loggin != null)
 				return Ok(loggin);
 
-			return NotFound(new { error = "Invalid Username or Password." });
+			return NotFound(new { error = "Invalid username or password." });
 		}
 	}
 }

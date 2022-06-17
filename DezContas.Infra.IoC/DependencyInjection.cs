@@ -30,7 +30,9 @@ namespace DezContas.Infra.IoC
 			services.AddAppServices();
 			services.AddDomainServices();
 			services.AddRepositories();
+			services.AddJwtAuthentication(configuration);
 			services.AddFluentValidations();
+
 
 			return services;
 		}

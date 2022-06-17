@@ -41,12 +41,12 @@ namespace DezContas.Infra.Data.Repositories
 
 		public Task<TEntity> GetSingle(Expression<Func<TEntity, bool>> filter = null, string include = null)
 		{
-			Task<TEntity> entity = null;
+			Task<TEntity?> entity = null;
 
 			if (string.IsNullOrEmpty(include))
-				entity = _context.Set<TEntity>().SingleAsync(filter);
+				entity = _context.Set<TEntity>().SingleOrDefaultAsync(filter);
 			else
-				entity = _context.Set<TEntity>().Include(include).SingleAsync(filter);
+				entity = _context.Set<TEntity>().Include(include).SingleOrDefaultAsync(filter);
 
 			return entity;
 		}
