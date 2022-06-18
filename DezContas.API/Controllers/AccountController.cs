@@ -30,8 +30,8 @@ namespace DezContas.API.Controllers
 			return Ok(accountsViewModel);
 		}
 
-		[HttpGet("{id}", Name = nameof(GetById))]
-		public async Task<IActionResult> GetById(Guid id)
+		[HttpGet("{id}", Name = nameof(GetAccountById))]
+		public async Task<IActionResult> GetAccountById(Guid id)
 		{
 			var account = await _accountService.GetSingle(x => x.Id == id);
 
