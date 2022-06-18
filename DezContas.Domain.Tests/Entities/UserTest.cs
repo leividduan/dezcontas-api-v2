@@ -30,7 +30,7 @@ namespace DezContas.Domain.Tests.Entities
 
 		[Fact]
 		[Trait("User", "Create")]
-		public void User_Create_WithoutAtSign()
+		public void User_Create_WithoutUsername()
 		{
 			// Arrange
 			var user = new User("Deivid", string.Empty, "deivid.cardos@gmail.com", "@Teste123", true);
