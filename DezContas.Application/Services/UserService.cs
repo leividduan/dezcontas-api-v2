@@ -14,7 +14,7 @@ namespace DezContas.Application.Services
 			_repository = repository;
 		}
 
-		public async Task<bool> ValidateUsernameAndEmail(User user)
+		public async Task<bool> ValidateIfExistUsernameAndEmail(User user)
 		{
 			var existingEmail = await _repository.GetSingle(x => x.Email == user.Email);
 			if (existingEmail != null)

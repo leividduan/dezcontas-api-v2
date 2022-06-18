@@ -23,8 +23,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-
-
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();

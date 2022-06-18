@@ -12,6 +12,9 @@ namespace DezContas.Domain.Entities
 		public string Password { get; set; }
 		public bool IsActive { get; set; }
 
+		// Relationships
+		public ICollection<Account> Account { get; set; }
+
 		public User()
 		{
 		}

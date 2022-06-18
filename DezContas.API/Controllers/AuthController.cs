@@ -33,7 +33,7 @@ namespace DezContas.API.Controllers
 			if (user == null)
 				return BadRequest();
 
-			if (!(user.IsValid() && await _userService.ValidateUsernameAndEmail(user)))
+			if (!(user.IsValid() && await _userService.ValidateIfExistUsernameAndEmail(user)))
 				return BadRequest(_mapper.Map<ErrorViewModel>(user.GetErrors()));
 
 			user.Password = user.HashPassword(user.Password);

@@ -3,8 +3,7 @@ using PlayPedidos.Application.Interfaces;
 
 namespace DezContas.Application.Interfaces
 {
-	public interface IUserService : IServiceBase<User>
+	public interface IAccountService : IServiceBase<Account>
 	{
-		Task<bool> ValidateIfExistUsernameAndEmail(User user);
 	}
 }
