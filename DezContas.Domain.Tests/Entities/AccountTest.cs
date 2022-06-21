@@ -62,5 +62,22 @@ namespace DezContas.Domain.Tests.Entities
 			// Act - Assert
 			Assert.False(account.IsValid());
 		}
+
+		[Fact]
+		[Trait("Account", "AssociateUser")]
+		public void Account_AssociateUser_Ok()
+		{
+			// Arrange
+			var oldIdUser = Guid.NewGuid();
+			var idUser = Guid.NewGuid();
+			var account = new Account("Banco X", "Conta do banco X pra movimentar o caixa 2", true, true, Domain.Entities.Type.General, oldIdUser);
+
+			// Act
+			account.AssociateUser(idUser);
+
+			// Assert
+			Assert.True(account.Id_User.Equals(idUser));
+			Assert.False(account.Id_User.Equals(oldIdUser));
+		}
 	}
 }
