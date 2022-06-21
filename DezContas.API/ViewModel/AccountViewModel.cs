@@ -17,8 +17,7 @@
 		string Description,
 		bool IsDefault,
 		bool IsActive,
-		Domain.Entities.Type Type,
-		Guid Id_User
+		Domain.Entities.Type Type
 	);
 
 	public record AccountPutViewModel(
@@ -27,7 +26,6 @@
 		string Description,
 		bool IsDefault,
 		bool IsActive,
-		Domain.Entities.Type Type,
-		Guid Id_User
+		Domain.Entities.Type Type
 	);
 }
