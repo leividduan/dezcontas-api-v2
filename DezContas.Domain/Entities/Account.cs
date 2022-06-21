@@ -10,12 +10,12 @@ namespace DezContas.Domain.Entities
 
 	public class Account : Entity
 	{
-		public string Name { get; set; }
-		public string Description { get; set; }
-		public bool IsDefault { get; set; }
-		public bool IsActive { get; set; }
-		public Type Type { get; set; }
-		public Guid Id_User { get; set; }
+		public string Name { get; private set; }
+		public string Description { get; private set; }
+		public bool IsDefault { get; private set; }
+		public bool IsActive { get; private set; }
+		public Type Type { get; private set; }
+		public Guid Id_User { get; private set; }
 
 
 		// Relationships

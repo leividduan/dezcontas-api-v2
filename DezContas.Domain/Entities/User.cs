@@ -5,14 +5,14 @@ namespace DezContas.Domain.Entities
 {
 	public class User : Entity
 	{
-		public string Name { get; set; }
-		public string Username { get; set; }
-		public string Email { get; set; }
-		public string Password { get; set; }
-		public bool IsActive { get; set; }
+		public string Name { get; private set; }
+		public string Username { get; private set; }
+		public string Email { get; private set; }
+		public string Password { get; private set; }
+		public bool IsActive { get; private set; }
 
 		// Relationships
-		public ICollection<Account> Account { get; set; }
+		public ICollection<Account> Account { get; private set; }
 
 		public User()
 		{
