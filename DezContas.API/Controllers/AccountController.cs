@@ -58,7 +58,7 @@ namespace DezContas.API.Controllers
 				return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
 
 			var idUser = HttpContext.User.Claims.GetUserIdClaim();
-			account.AssociateUser(idUser);
+			account.AssociateIdUser(idUser);
 
 			await _accountService.Add(account);
 
@@ -79,7 +79,7 @@ namespace DezContas.API.Controllers
 				return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
 
 			var idUser = HttpContext.User.Claims.GetUserIdClaim();
-			account.AssociateUser(idUser);
+			account.AssociateIdUser(idUser);
 
 			await _accountService.Edit(account);
 

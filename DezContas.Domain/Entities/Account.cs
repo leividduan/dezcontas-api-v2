@@ -35,7 +35,7 @@ namespace DezContas.Domain.Entities
 			Id_User = idUser;
 		}
 
-		public void AssociateUser(Guid idUser)
+		public void AssociateIdUser(Guid idUser)
 		{
 			Id_User = idUser;
 		}

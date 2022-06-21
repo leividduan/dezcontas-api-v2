@@ -73,7 +73,7 @@ namespace DezContas.Domain.Tests.Entities
 			var account = new Account("Banco X", "Conta do banco X pra movimentar o caixa 2", true, true, Domain.Entities.Type.General, oldIdUser);
 
 			// Act
-			account.AssociateUser(idUser);
+			account.AssociateIdUser(idUser);
 
 			// Assert
 			Assert.True(account.Id_User.Equals(idUser));
