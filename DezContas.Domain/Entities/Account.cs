@@ -35,6 +35,11 @@ namespace DezContas.Domain.Entities
 			Id_User = idUser;
 		}
 
+		public void AssociateUser(Guid idUser)
+		{
+			Id_User = idUser;
+		}
+
 		public override bool IsValid()
 		{
 			ValidationResult = new AccountValidator().Validate(this);
