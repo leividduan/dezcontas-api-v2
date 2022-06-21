@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DezContas.API.Helpers;
 using DezContas.API.ViewModel;
 using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
@@ -51,19 +52,21 @@ namespace DezContas.API.Controllers
 			if (account == null)
 				return BadRequest();
 
-			if (account.IsValid())
+			if (!account.IsValid())
 				return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
 
+			var idUser = HttpContext.User.Claims.GetUserIdClaim();
+			account.AssociateUser(idUser);
 
 			await _accountService.Add(account);
 
-			var newAccountViewModel = _mapper.Map<UserViewModel>(account);
+			var newAccountViewModel = _mapper.Map<AccountViewModel>(account);
 			return Ok(newAccountViewModel);
 		}
 
 		[HttpPut("{id}")]
 		[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
-		public async Task<IActionResult> PutById(Guid id, [FromBody] UserPutViewModel accountViewModel)
+		public async Task<IActionResult> PutById(Guid id, [FromBody] AccountPutViewModel accountViewModel)
 		{
 			if (id != accountViewModel.Id)
 				return BadRequest();
@@ -75,11 +78,11 @@ namespace DezContas.API.Controllers
 
 			await _accountService.Edit(account);
 
-			var editedAccountViewModel = _mapper.Map<UserViewModel>(account);
+			var editedAccountViewModel = _mapper.Map<AccountViewModel>(account);
 			return Ok(editedAccountViewModel);
 		}
 
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<IActionResult> DeleteById(Guid id)
 		{
 			var account = await _accountService.GetSingle(x => x.Id == id);

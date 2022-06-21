@@ -14,8 +14,8 @@ namespace DezContas.API.Controllers
 	public class AuthController : ControllerBase
 	{
 		private readonly IMapper _mapper;
-		private readonly IUserService _userService;
 		private readonly IAuthService _authService;
+		private readonly IUserService _userService;
 
 		public AuthController(IMapper mapper, IAuthService authService, IUserService userService)
 		{
@@ -36,8 +36,8 @@ namespace DezContas.API.Controllers
 			if (!(user.IsValid() && await _userService.ValidateIfExistUsernameAndEmail(user)))
 				return BadRequest(_mapper.Map<ErrorViewModel>(user.GetErrors()));
 
-			user.Password = user.HashPassword(user.Password);
-			user.IsActive = true;
+			user.HashPassword();
+			user.Activate();
 
 			await _userService.Add(user);
 
