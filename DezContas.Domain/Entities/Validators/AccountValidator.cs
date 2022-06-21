@@ -13,6 +13,8 @@ namespace DezContas.Domain.Entities.Validators
 			RuleFor(x => x.Description).MaximumLength(500).WithMessage("Maximum length must be 50 characters");
 
 			RuleFor(x => x.Type).NotNull().NotNull().WithMessage("Type is required");
+
+			RuleFor(x => x.Id_User).NotNull().NotNull().WithMessage("Id_User is required");
 		}
 	}
 }
