@@ -1,6 +1,7 @@
 ﻿using DezContas.Domain.Entities;
 using DezContas.Domain.Interfaces.Repositories;
 using DezContas.Domain.Interfaces.Services;
+using DezContas.Domain.Utils;
 
 namespace DezContas.Domain.Services
 {
@@ -20,7 +21,7 @@ namespace DezContas.Domain.Services
 			var savedUser = await _repository.GetSingle(x => x.Username == user.Username);
 			if (savedUser != null)
 			{
-				if (user.VerifyPassword(user.Password, savedUser.Password))
+				if (PasswordUtils.VerifyPassword(user.Password, savedUser.Password))
 				{
 					var token = _tokenService.GenerateToken(savedUser);
 					return new

@@ -83,5 +83,67 @@ namespace DezContas.Domain.Tests.Entities
 			// Act - Assert
 			Assert.False(user.IsValid());
 		}
+
+		[Fact]
+		[Trait("User", "IsActive")]
+		public void User_IsActive_Activate()
+		{
+			// Arrange
+			var isActive = false;
+			var user = new User("Deivid", "leividduan", "deivid.cardos@gmail.com", "@Teste123", isActive);
+
+			// Act
+			user.Activate();
+
+			// Assert
+			Assert.True(user.IsActive);
+			Assert.True(isActive != user.IsActive);
+		}
+
+		[Fact]
+		[Trait("User", "IsActive")]
+		public void User_IsActive_Deactivate()
+		{
+			// Arrange
+			var isActive = true;
+			var user = new User("Deivid", "leividduan", "deivid.cardos@gmail.com", "@Teste123", isActive);
+
+			// Act
+			user.Deactivate();
+
+			// Assert
+			Assert.False(user.IsActive);
+			Assert.True(isActive != user.IsActive);
+		}
+
+		[Fact]
+		[Trait("User", "HashPassword")]
+		public void User_HashPassword_Ok()
+		{
+			// Arrange
+			var encryptedPassword = "vo+5dOWzaRpj4R1lzlRYQyOfGePIUJ5Jdt57no3QnW0=";
+			var user = new User("Deivid", "leividduan", "deivid.cardos@gmail.com", "@Teste123", true);
+
+			// Act
+			user.HashPassword();
+
+			// Assert
+			Assert.True(encryptedPassword.Equals(user.Password));
+		}
+
+		[Fact]
+		[Trait("User", "HashPassword")]
+		public void User_HashPassword_NotOk()
+		{
+			// Arrange
+			var encryptedPassword = "@Teste123";
+			var user = new User("Deivid", "leividduan", "deivid.cardos@gmail.com", "@Teste123", true);
+
+			// Act
+			user.HashPassword();
+
+			// Assert
+			Assert.False(encryptedPassword.Equals(user.Password));
+		}
 	}
 }

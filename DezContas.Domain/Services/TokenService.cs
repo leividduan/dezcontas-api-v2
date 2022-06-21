@@ -24,7 +24,7 @@ namespace DezContas.Domain.Services
 			{
 				Subject = new ClaimsIdentity(new Claim[]
 				{
-					new Claim("ID_User", user.Id.ToString()),
+					new Claim("Id_User", user.Id.ToString()),
 					new Claim(ClaimTypes.Name, user.Name),
 					new Claim("Username", user.Username),
 					new Claim(ClaimTypes.Email, user.Email),

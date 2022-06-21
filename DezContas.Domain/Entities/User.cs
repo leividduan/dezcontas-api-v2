@@ -1,6 +1,5 @@
 ﻿using DezContas.Domain.Entities.Validators;
-using System.Security.Cryptography;
-using System.Text;
+using DezContas.Domain.Utils;
 
 namespace DezContas.Domain.Entities
 {
@@ -28,22 +27,19 @@ namespace DezContas.Domain.Entities
 			IsActive = isActive;
 		}
 
-		public string HashPassword(string password)
+		public void Activate()
 		{
-			if (string.IsNullOrEmpty(password))
-				return string.Empty;
-
-			var input = Encoding.UTF8.GetBytes(password);
-			using (var hashAlgorithm = HashAlgorithm.Create("sha256"))
-			{
-				return Convert.ToBase64String(hashAlgorithm.ComputeHash(input));
-			}
+			IsActive = true;
 		}
 
-		public bool VerifyPassword(string passwordToVerify, string passwordVerified)
+		public void Deactivate()
 		{
-			var hash = HashPassword(passwordToVerify);
-			return hash == passwordVerified;
+			IsActive = false;
+		}
+
+		public void HashPassword()
+		{
+			Password = PasswordUtils.HashPassword(Password);
 		}
 
 		public override bool IsValid()

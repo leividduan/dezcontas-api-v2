@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DezContas.Domain.Utils
 {
@@ -15,6 +17,24 @@ namespace DezContas.Domain.Utils
 			var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
 			return hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMiniMaxChars.IsMatch(password) && hasLowerChar.IsMatch(password) && hasSymbols.IsMatch(password);
+		}
+
+		public static string HashPassword(string password)
+		{
+			if (string.IsNullOrEmpty(password))
+				return string.Empty;
+
+			var input = Encoding.UTF8.GetBytes(password);
+			using (var hashAlgorithm = HashAlgorithm.Create("sha256"))
+			{
+				return Convert.ToBase64String(hashAlgorithm.ComputeHash(input));
+			}
+		}
+
+		public static bool VerifyPassword(string passwordToVerify, string passwordVerified)
+		{
+			var hashedPasswordToVerify = HashPassword(passwordToVerify);
+			return hashedPasswordToVerify.Equals(passwordVerified);
 		}
 	}
 }
