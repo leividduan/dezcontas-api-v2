@@ -27,6 +27,8 @@ namespace DezContas.Domain.Utils
 			var input = Encoding.UTF8.GetBytes(password);
 			using (var hashAlgorithm = HashAlgorithm.Create("sha256"))
 			{
+				if (hashAlgorithm == null) return string.Empty;
+
 				return Convert.ToBase64String(hashAlgorithm.ComputeHash(input));
 			}
 		}
