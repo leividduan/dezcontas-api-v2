@@ -3,6 +3,7 @@ using DezContas.API.Helpers;
 using DezContas.API.ViewModel;
 using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayPedidos.API.ViewModel;
 
@@ -10,6 +11,7 @@ namespace DezContas.API.Controllers
 {
 	[Route("api/v1/account")]
 	[ApiController]
+	[Authorize]
 	public class AccountController : ControllerBase
 	{
 		private readonly IMapper _mapper;
@@ -75,6 +77,9 @@ namespace DezContas.API.Controllers
 
 			if (!account.IsValid())
 				return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
+
+			var idUser = HttpContext.User.Claims.GetUserIdClaim();
+			account.AssociateUser(idUser);
 
 			await _accountService.Edit(account);
 
