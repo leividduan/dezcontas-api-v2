@@ -11,6 +11,7 @@ namespace DezContas.API.Controllers
 {
 	[Route("api/v1/auth")]
 	[ApiController]
+	[AllowAnonymous]
 	public class AuthController : ControllerBase
 	{
 		private readonly IMapper _mapper;
@@ -47,7 +48,6 @@ namespace DezContas.API.Controllers
 
 		[Route("login")]
 		[HttpPost]
-		[AllowAnonymous]
 		public async Task<ActionResult<dynamic>> Login([FromBody] UserLoginViewModel userViewModel)
 		{
 			var user = _mapper.Map<User>(userViewModel);
