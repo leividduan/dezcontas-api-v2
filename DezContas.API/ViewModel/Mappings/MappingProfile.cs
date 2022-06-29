@@ -9,6 +9,14 @@ namespace PlayPedidos.API.DTOs.Mappings
 	{
 		public MappingProfile()
 		{
+			CreateMap<Account, AccountViewModel>().ReverseMap();
+			CreateMap<Account, AccountPostViewModel>().ReverseMap();
+			CreateMap<Account, AccountPutViewModel>().ReverseMap();
+
+			CreateMap<Category, CategoryViewModel>().ReverseMap();
+			CreateMap<Category, CategoryPostViewModel>().ReverseMap();
+			CreateMap<Category, CategoryPutViewModel>().ReverseMap();
+
 			CreateMap<Error, ErrorViewModel>().ReverseMap();
 			CreateMap<ErrorDetails, ErrorDetailsViewModel>().ReverseMap();
 
@@ -16,10 +24,6 @@ namespace PlayPedidos.API.DTOs.Mappings
 			CreateMap<User, UserPostViewModel>().ReverseMap();
 			CreateMap<User, UserPutViewModel>().ReverseMap();
 			CreateMap<User, UserLoginViewModel>().ReverseMap();
-
-			CreateMap<Account, AccountViewModel>().ReverseMap();
-			CreateMap<Account, AccountPostViewModel>().ReverseMap();
-			CreateMap<Account, AccountPutViewModel>().ReverseMap();
 		}
 	}
 }

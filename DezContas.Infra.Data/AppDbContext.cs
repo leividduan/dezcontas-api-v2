@@ -9,6 +9,7 @@ namespace DezContas.Infra.Data
 			: base(options) { }
 
 		public DbSet<Account> Account { get; set; }
+		public DbSet<Category> Category { get; set; }
 		public DbSet<User> User { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

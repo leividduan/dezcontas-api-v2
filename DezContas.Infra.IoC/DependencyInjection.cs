@@ -41,6 +41,7 @@ namespace DezContas.Infra.IoC
 		{
 			services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 			services.AddScoped<IAccountRepository, AccountRepository>();
+			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 
 			return services;
@@ -50,6 +51,7 @@ namespace DezContas.Infra.IoC
 		{
 			services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 			services.AddScoped<IAccountService, AccountService>();
+			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IUserService, UserService>();
 
 			return services;

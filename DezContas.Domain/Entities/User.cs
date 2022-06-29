@@ -13,6 +13,7 @@ namespace DezContas.Domain.Entities
 
 		// Relationships
 		public ICollection<Account> Account { get; private set; }
+		public ICollection<Category> Category { get; private set; }
 
 		public User()
 		{
