@@ -1,8 +1,7 @@
 ﻿using DezContas.Domain.Entities;
 
-namespace DezContas.Domain.Interfaces.Repositories
+namespace DezContas.Domain.Interfaces.Repositories;
+
+public interface IUserRepository : IRepositoryBase<User>
 {
-	public interface IUserRepository : IRepositoryBase<User>
-	{
-	}
 }

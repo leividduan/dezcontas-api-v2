@@ -1,9 +1,8 @@
 ﻿using DezContas.Domain.Entities;
 
-namespace DezContas.Domain.Interfaces.Services
+namespace DezContas.Domain.Interfaces.Services;
+
+public interface IAuthService
 {
-	public interface IAuthService
-	{
-		public Task<dynamic> Login(User user);
-	}
+  public Task<dynamic> Login(User user);
 }

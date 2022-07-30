@@ -1,14 +1,13 @@
 ﻿using DezContas.Domain.Entities;
 using DezContas.Domain.Interfaces.Repositories;
 
-namespace DezContas.Infra.Data.Repositories
+namespace DezContas.Infra.Data.Repositories;
+
+public class AccountRepository : RepositoryBase<Account>, IAccountRepository
 {
-	public class AccountRepository : RepositoryBase<Account>, IAccountRepository
-	{
-		private readonly AppDbContext _context;
-		public AccountRepository(AppDbContext context) : base(context)
-		{
-			_context = context;
-		}
-	}
+  private readonly AppDbContext _context;
+  public AccountRepository(AppDbContext context) : base(context)
+  {
+    _context = context;
+  }
 }

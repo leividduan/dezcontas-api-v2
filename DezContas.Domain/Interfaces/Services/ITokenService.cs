@@ -1,9 +1,8 @@
 ﻿using DezContas.Domain.Entities;
 
-namespace DezContas.Domain.Interfaces.Services
+namespace DezContas.Domain.Interfaces.Services;
+
+public interface ITokenService
 {
-	public interface ITokenService
-	{
-		string GenerateToken(User user);
-	}
+  string GenerateToken(User user);
 }

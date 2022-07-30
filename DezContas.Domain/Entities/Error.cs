@@ -1,9 +1,8 @@
-﻿namespace DezContas.Domain.Entities
-{
-	public record Error(List<ErrorDetails> Errors);
+﻿namespace DezContas.Domain.Entities;
 
-	public record ErrorDetails(
-		string Field,
-		List<string> Messages
-	);
-}
+public record Error(List<ErrorDetails> Errors);
+
+public record ErrorDetails(
+  string Field,
+  List<string> Messages
+);
