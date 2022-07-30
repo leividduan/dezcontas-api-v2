@@ -2,6 +2,7 @@
 using DezContas.API.ViewModel;
 using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayPedidos.API.ViewModel;
 
@@ -9,6 +10,7 @@ namespace DezContas.API.Controllers
 {
   [Route("api/v1/user")]
   [ApiController]
+  [Authorize]
   public class UserController : ControllerBase
   {
     private readonly IMapper _mapper;
