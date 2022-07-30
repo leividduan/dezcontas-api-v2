@@ -8,10 +8,7 @@ builder.Services.AddControllers();
 
 #region [AutoMapper]
 
-var mappingConfig = new MapperConfiguration(mc =>
-{
-	mc.AddProfile(new MappingProfile());
-});
+var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new MappingProfile()));
 IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 

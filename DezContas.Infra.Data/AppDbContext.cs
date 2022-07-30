@@ -16,9 +16,11 @@ namespace DezContas.Infra.Data
 		{
 			foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
 				e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
-				property.SetColumnType("varchar(100)");
+      {
+        property.SetColumnType("varchar(100)");
+      }
 
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
 			var cascadeFKs = modelBuilder.Model.GetEntityTypes()
 					.SelectMany(t => t.GetForeignKeys())
@@ -44,7 +46,7 @@ namespace DezContas.Infra.Data
 					entry.Property("UpdatedAt").CurrentValue = DateTime.Now;
 				}
 			}
-			return base.SaveChangesAsync();
+			return base.SaveChangesAsync(cancellationToken);
 		}
 	}
 }

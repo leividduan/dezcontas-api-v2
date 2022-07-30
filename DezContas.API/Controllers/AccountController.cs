@@ -73,6 +73,10 @@ namespace DezContas.API.Controllers
 			if (id != accountViewModel.Id)
 				return BadRequest();
 
+			var existingAccount = await _accountService.GetSingle(x => x.Id == id);
+			if (existingAccount == null)
+				return BadRequest();
+
 			var account = _mapper.Map<Account>(accountViewModel);
 
 			if (!account.IsValid())

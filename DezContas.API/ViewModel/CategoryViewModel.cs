@@ -4,7 +4,7 @@
 		Guid Id,
 		string Name,
 		string Description,
-		Domain.Enums.ECategoryType Type,
+		Domain.Entities.Transaction.Types Type,
 		bool IsActive,
 		Guid Id_User,
 		DateTime CreatedAt,
@@ -15,7 +15,7 @@
 		string Name,
 		string Description,
 		bool IsActive,
-		Domain.Enums.ECategoryType Type
+		Domain.Entities.Transaction.Types Type
 	);
 
 	public record CategoryPutViewModel(
@@ -23,6 +23,6 @@
 		string Name,
 		string Description,
 		bool IsActive,
-		Domain.Enums.ECategoryType Type
+		Domain.Entities.Transaction.Types Type
 	);
 }

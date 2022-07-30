@@ -6,7 +6,7 @@
 		string Description,
 		bool IsDefault,
 		bool IsActive,
-		Domain.Entities.Type Type,
+    Domain.Entities.Account.Types Type,
 		Guid Id_User,
 		DateTime CreatedAt,
 		DateTime UpdatedAt
@@ -17,7 +17,7 @@
 		string Description,
 		bool IsDefault,
 		bool IsActive,
-		Domain.Entities.Type Type
+		Domain.Entities.Account.Types Type
 	);
 
 	public record AccountPutViewModel(
@@ -26,6 +26,6 @@
 		string Description,
 		bool IsDefault,
 		bool IsActive,
-		Domain.Entities.Type Type
+		Domain.Entities.Account.Types Type
 	);
 }
