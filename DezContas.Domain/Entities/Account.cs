@@ -40,6 +40,30 @@ public class Account : Entity
     Id_User = idUser;
   }
 
+  public void Edit(string name, string description, bool isDefault, bool isActive, Types type)
+  {
+    Name = name;
+    Description = description;
+    IsDefault = isDefault;
+    IsActive = isActive;
+    Type = type;
+  }
+
+  public void Activate()
+  {
+    IsActive = true;
+  }
+
+  public void Deactivate()
+  {
+    IsActive = false;
+  }
+
+  public void SetIsDefault(bool value)
+  {
+    IsDefault = value;
+  }
+
   public override bool IsValid()
   {
     ValidationResult = new AccountValidator().Validate(this);

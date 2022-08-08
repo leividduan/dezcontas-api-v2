@@ -27,7 +27,7 @@ public class AccountController : ControllerBase
   {
     var accounts = await _accountService.Get();
 
-    var accountsViewModel = _mapper.Map<IEnumerable<AccountViewModel>>(accounts);
+    var accountsViewModel = _mapper.Map<IEnumerable<AccountViewModel>>(accounts.OrderBy(x => x.CreatedAt));
 
     return Ok(accountsViewModel);
   }
@@ -53,16 +53,34 @@ public class AccountController : ControllerBase
     if (account == null)
       return BadRequest();
 
-    if (!account.IsValid())
-      return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
-
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
     account.AssociateIdUser(idUser);
 
-    await _accountService.Add(account);
+    if (!account.IsValid())
+      return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
+
+    await _accountService.Add(account, account.IsDefault);
 
     var newAccountViewModel = _mapper.Map<AccountViewModel>(account);
     return Ok(newAccountViewModel);
+  }
+
+  [AcceptVerbs("COPY")]
+  [Route("{id}")]
+  public async Task<IActionResult> Duplicate(Guid id)
+  {
+    var idUser = HttpContext.User.Claims.GetUserIdClaim();
+
+    var account = await _accountService.GetSingle(x => x.Id == id && x.Id_User == idUser);
+    if (account == null)
+      return NotFound();
+
+    account.Duplicate();
+    await _accountService.Add(account);
+
+    var accountViewModel = _mapper.Map<AccountViewModel>(account);
+
+    return Ok(accountViewModel);
   }
 
   [HttpPut("{id}")]
@@ -72,21 +90,21 @@ public class AccountController : ControllerBase
     if (id != accountViewModel.Id)
       return BadRequest();
 
-    var existingAccount = await _accountService.GetSingle(x => x.Id == id);
+    var idUser = HttpContext.User.Claims.GetUserIdClaim();
+
+    var existingAccount = await _accountService.GetSingle(x => x.Id == id && x.Id_User == idUser);
     if (existingAccount == null)
       return BadRequest();
 
-    var account = _mapper.Map<Account>(accountViewModel);
+    existingAccount.AssociateIdUser(idUser);
+    existingAccount.Edit(accountViewModel.Name, accountViewModel.Description, accountViewModel.IsDefault, accountViewModel.IsActive, accountViewModel.Type);
 
-    if (!account.IsValid())
-      return BadRequest(_mapper.Map<ErrorViewModel>(account.GetErrors()));
+    if (!existingAccount.IsValid())
+      return BadRequest(_mapper.Map<ErrorViewModel>(existingAccount.GetErrors()));
 
-    var idUser = HttpContext.User.Claims.GetUserIdClaim();
-    account.AssociateIdUser(idUser);
+    await _accountService.Edit(existingAccount, true);
 
-    await _accountService.Edit(account);
-
-    var editedAccountViewModel = _mapper.Map<AccountViewModel>(account);
+    var editedAccountViewModel = _mapper.Map<AccountViewModel>(existingAccount);
     return Ok(editedAccountViewModel);
   }
 

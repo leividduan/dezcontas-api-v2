@@ -28,7 +28,7 @@ public class CategoryController : ControllerBase
   {
     var categories = await _categoryService.Get();
 
-    var categoriesViewModel = _mapper.Map<IEnumerable<CategoryViewModel>>(categories);
+    var categoriesViewModel = _mapper.Map<IEnumerable<CategoryViewModel>>(categories.OrderBy(x => x.CreatedAt));
 
     return Ok(categoriesViewModel);
   }
@@ -54,11 +54,11 @@ public class CategoryController : ControllerBase
     if (category == null)
       return BadRequest();
 
-    if (!category.IsValid())
-      return BadRequest(_mapper.Map<ErrorViewModel>(category.GetErrors()));
-
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
     category.AssociateIdUser(idUser);
+
+    if (!category.IsValid())
+      return BadRequest(_mapper.Map<ErrorViewModel>(category.GetErrors()));
 
     await _categoryService.Add(category);
 
@@ -73,21 +73,21 @@ public class CategoryController : ControllerBase
     if (id != categoryViewModel.Id)
       return BadRequest();
 
-    var existingCategory = await _categoryService.GetSingle(x => x.Id == id);
+    var idUser = HttpContext.User.Claims.GetUserIdClaim();
+
+    var existingCategory = await _categoryService.GetSingle(x => x.Id == id && x.Id_User == idUser);
     if (existingCategory == null)
       return BadRequest();
 
-    var category = _mapper.Map<Category>(categoryViewModel);
+    existingCategory.AssociateIdUser(idUser);
+    existingCategory.Edit(categoryViewModel.Name, categoryViewModel.Description, categoryViewModel.IsActive, categoryViewModel.Type);
 
-    if (!category.IsValid())
-      return BadRequest(_mapper.Map<ErrorViewModel>(category.GetErrors()));
+    if (!existingCategory.IsValid())
+      return BadRequest(_mapper.Map<ErrorViewModel>(existingCategory.GetErrors()));
 
-    var idUser = HttpContext.User.Claims.GetUserIdClaim();
-    category.AssociateIdUser(idUser);
+    await _categoryService.Edit(existingCategory);
 
-    await _categoryService.Edit(category);
-
-    var editedCategoryViewModel = _mapper.Map<CategoryViewModel>(category);
+    var editedCategoryViewModel = _mapper.Map<CategoryViewModel>(existingCategory);
     return Ok(editedCategoryViewModel);
   }
 

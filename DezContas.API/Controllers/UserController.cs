@@ -27,7 +27,7 @@ namespace DezContas.API.Controllers
     {
       var users = await _userService.Get();
 
-      var usersViewModel = _mapper.Map<IEnumerable<UserViewModel>>(users);
+      var usersViewModel = _mapper.Map<IEnumerable<UserViewModel>>(users.OrderBy(x => x.CreatedAt));
 
       return Ok(usersViewModel);
     }

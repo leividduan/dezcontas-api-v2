@@ -13,25 +13,35 @@ public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> whe
     _context = context;
   }
 
-  public async Task<bool> Add(TEntity entity)
+  public async Task<bool> Add(TEntity entity, bool saveChanges = true)
   {
     var entityAdded = await _context.Set<TEntity>().AddAsync(entity);
-    await _context.SaveChangesAsync();
+
+    if (saveChanges)
+      await _context.SaveChangesAsync();
+
     return entityAdded != null;
   }
 
-  public async Task<bool> Edit(TEntity entity)
+  public async Task<bool> Edit(TEntity entity, bool saveChanges = true)
   {
     _context.Entry(entity).State = EntityState.Modified;
     var entityEdited = _context.Set<TEntity>().Update(entity);
-    await _context.SaveChangesAsync();
+
+    if (saveChanges)
+      await _context.SaveChangesAsync();
+
     return entityEdited != null;
   }
 
-  public async Task<bool> Delete(TEntity entity)
+  public async Task<bool> Delete(TEntity entity, bool saveChanges = true)
   {
     _context.Set<TEntity>().Remove(entity);
-    return await _context.SaveChangesAsync() > 0;
+
+    if (saveChanges)
+      return await _context.SaveChangesAsync() > 0;
+
+    return true;
   }
 
   public async Task<int> Save()

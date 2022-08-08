@@ -23,6 +23,14 @@ public abstract class Entity
     ValidationResult = new ValidationResult();
   }
 
+  public void Duplicate()
+  {
+    Id = Guid.Empty;
+    var now = DateTime.Now;
+    CreatedAt = now;
+    UpdatedAt = now;
+  }
+
   public virtual bool IsValid()
   {
     throw new NotImplementedException();

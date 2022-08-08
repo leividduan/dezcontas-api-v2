@@ -31,6 +31,14 @@ public class Category : Entity
     Id_User = idUser;
   }
 
+  public void Edit(string name, string description, bool isActive, Transaction.Types type)
+  {
+    Name = name;
+    Description = description;
+    IsActive = isActive;
+    Type = type;
+  }
+
   public override bool IsValid()
   {
     ValidationResult = new CategoryValidator().Validate(this);
