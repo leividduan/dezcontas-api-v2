@@ -1,28 +1,28 @@
-﻿namespace DezContas.API.ViewModel
-{
-	public record CategoryViewModel(
-		Guid Id,
-		string Name,
-		string Description,
-		Domain.Entities.Transaction.Types Type,
-		bool IsActive,
-		Guid Id_User,
-		DateTime CreatedAt,
-		DateTime UpdatedAt
-	);
+using DezContas.Domain.Entities;
 
-	public record CategoryPostViewModel(
-		string Name,
-		string Description,
-		bool IsActive,
-		Domain.Entities.Transaction.Types Type
-	);
+namespace DezContas.API.ViewModel;
+public record CategoryViewModel(
+    Guid Id,
+    string Name,
+    string Description,
+    Transaction.Types Type,
+    bool IsActive,
+    Guid UserId,
+    DateTime CreatedAt,
+    DateTime UpdatedAt
+);
 
-	public record CategoryPutViewModel(
-		Guid Id,
-		string Name,
-		string Description,
-		bool IsActive,
-		Domain.Entities.Transaction.Types Type
-	);
-}
+public record CategoryPostViewModel(
+    string Name,
+    string Description,
+    bool IsActive,
+    Transaction.Types Type
+);
+
+public record CategoryPutViewModel(
+    Guid Id,
+    string Name,
+    string Description,
+    bool IsActive,
+    Transaction.Types Type
+);

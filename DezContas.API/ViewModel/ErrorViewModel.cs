@@ -1,11 +1,9 @@
-﻿namespace PlayPedidos.API.ViewModel
-{
-	public record ErrorViewModel(
-		List<ErrorDetailsViewModel> Errors
-	);
+namespace DezContas.API.ViewModel;
+public record ErrorViewModel(
+  List<ErrorDetailsViewModel> Errors
+);
 
-	public record ErrorDetailsViewModel(
-		string Field,
-		List<string> Messages
-	);
-}
+public record ErrorDetailsViewModel(
+  string Field,
+  List<string> Messages
+);

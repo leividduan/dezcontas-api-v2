@@ -5,7 +5,6 @@ using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PlayPedidos.API.ViewModel;
 
 namespace DezContas.API.Controllers;
 
@@ -75,7 +74,7 @@ public class CategoryController : ControllerBase
 
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
 
-    var existingCategory = await _categoryService.GetSingle(x => x.Id == id && x.Id_User == idUser);
+    var existingCategory = await _categoryService.GetSingle(x => x.Id == id && x.UserId == idUser);
     if (existingCategory == null)
       return BadRequest();
 

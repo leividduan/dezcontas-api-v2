@@ -1,4 +1,4 @@
-﻿using DezContas.Domain.Entities;
+using DezContas.Domain.Entities;
 using DezContas.Domain.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -24,7 +24,7 @@ public class TokenService : ITokenService
     {
       Subject = new ClaimsIdentity(new Claim[]
       {
-          new Claim("Id_User", user.Id.ToString()),
+          new Claim("UserId", user.Id.ToString()),
           new Claim(ClaimTypes.Name, user.Name),
           new Claim("Username", user.Username),
           new Claim(ClaimTypes.Email, user.Email),

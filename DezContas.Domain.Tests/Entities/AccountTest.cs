@@ -1,4 +1,4 @@
-﻿using DezContas.Domain.Entities;
+using DezContas.Domain.Entities;
 using System;
 using Xunit;
 
@@ -76,7 +76,7 @@ public class AccountTest
     account.AssociateIdUser(idUser);
 
     // Assert
-    Assert.True(account.Id_User.Equals(idUser));
-    Assert.False(account.Id_User.Equals(oldIdUser));
+    Assert.True(account.UserId.Equals(idUser));
+    Assert.False(account.UserId.Equals(oldIdUser));
   }
 }

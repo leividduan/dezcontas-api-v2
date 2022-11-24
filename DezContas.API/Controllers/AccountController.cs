@@ -1,11 +1,10 @@
-﻿using AutoMapper;
+using AutoMapper;
 using DezContas.API.Helpers;
 using DezContas.API.ViewModel;
 using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PlayPedidos.API.ViewModel;
 
 namespace DezContas.API.Controllers;
 [Route("api/v1/account")]
@@ -71,7 +70,7 @@ public class AccountController : ControllerBase
   {
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
 
-    var account = await _accountService.GetSingle(x => x.Id == id && x.Id_User == idUser);
+    var account = await _accountService.GetSingle(x => x.Id == id && x.UserId == idUser);
     if (account == null)
       return NotFound();
 
@@ -92,7 +91,7 @@ public class AccountController : ControllerBase
 
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
 
-    var existingAccount = await _accountService.GetSingle(x => x.Id == id && x.Id_User == idUser);
+    var existingAccount = await _accountService.GetSingle(x => x.Id == id && x.UserId == idUser);
     if (existingAccount == null)
       return BadRequest();
 

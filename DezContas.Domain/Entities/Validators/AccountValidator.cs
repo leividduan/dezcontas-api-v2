@@ -14,6 +14,6 @@ public class AccountValidator : AbstractValidator<Account>
 
     RuleFor(x => x.Type).NotNull().NotNull().WithMessage("Type is required");
 
-    RuleFor(x => x.UserId).NotNull().NotNull().WithMessage("Id_User is required");
+    RuleFor(x => x.UserId).NotNull().NotNull().WithMessage("UserId is required");
   }
 }

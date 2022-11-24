@@ -1,4 +1,4 @@
-﻿using DezContas.Domain.Entities;
+using DezContas.Domain.Entities;
 using System;
 using Xunit;
 
@@ -108,7 +108,7 @@ public class CategoryTest
     category.AssociateIdUser(idUser);
 
     // Assert
-    Assert.True(category.Id_User.Equals(idUser));
-    Assert.False(category.Id_User.Equals(oldIdUser));
+    Assert.True(category.UserId.Equals(idUser));
+    Assert.False(category.UserId.Equals(oldIdUser));
   }
 }

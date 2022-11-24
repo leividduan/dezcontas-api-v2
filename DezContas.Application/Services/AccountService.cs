@@ -16,7 +16,7 @@ public class AccountService : ServiceBase<Account>, IAccountService
   public async Task<bool> Add(Account entity, bool verifyIsDefault)
   {
     if (verifyIsDefault)
-      await SetOthersAccountsIsNotDefault(entity.Id, entity.Id_User);
+      await SetOthersAccountsIsNotDefault(entity.Id, entity.UserId);
 
     await _repository.Edit(entity);
     return entity != null;
@@ -25,7 +25,7 @@ public class AccountService : ServiceBase<Account>, IAccountService
   public async Task<bool> Edit(Account entity, bool verifyIsDefault)
   {
     if (verifyIsDefault)
-      await SetOthersAccountsIsNotDefault(entity.Id, entity.Id_User);
+      await SetOthersAccountsIsNotDefault(entity.Id, entity.UserId);
 
     await _repository.Edit(entity);
     return entity != null;
@@ -33,7 +33,7 @@ public class AccountService : ServiceBase<Account>, IAccountService
 
   private async Task SetOthersAccountsIsNotDefault(Guid idCurrentDefaultAccount, Guid idUser)
   {
-    var defaultsAccounts = await _repository.Get(x => x.Id_User == idUser && x.IsDefault && x.Id != idCurrentDefaultAccount);
+    var defaultsAccounts = await _repository.Get(x => x.UserId == idUser && x.IsDefault && x.Id != idCurrentDefaultAccount);
     foreach (var defaultAccount in defaultsAccounts)
     {
       defaultAccount.SetIsDefault(false);

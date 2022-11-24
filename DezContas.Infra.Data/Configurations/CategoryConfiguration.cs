@@ -1,4 +1,4 @@
-﻿using DezContas.Domain.Entities;
+using DezContas.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,6 +21,6 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     // Relationships
     builder.HasOne(x => x.User)
       .WithMany(x => x.Category)
-      .HasForeignKey(x => x.Id_User);
+      .HasForeignKey(x => x.UserId);
   }
 }

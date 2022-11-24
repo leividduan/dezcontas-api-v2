@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using DezContas.API.ViewModel;
+using AutoMapper;
 using DezContas.Domain.Entities;
-using PlayPedidos.API.ViewModel;
 
-namespace PlayPedidos.API.DTOs.Mappings;
+namespace DezContas.API.ViewModel.Mappings;
 
 public class MappingProfile : Profile
 {
