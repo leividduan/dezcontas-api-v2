@@ -1,4 +1,4 @@
-﻿
+
 using FluentValidation.Results;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +13,7 @@ public abstract class Entity
   [NotMapped]
   public ValidationResult ValidationResult { get; set; }
 
-  public Entity()
+  protected Entity()
   {
     Id = Guid.NewGuid();
     var now = DateTime.Now;
@@ -31,17 +31,14 @@ public abstract class Entity
     UpdatedAt = now;
   }
 
-  public virtual bool IsValid()
-  {
-    throw new NotImplementedException();
-  }
+  public abstract bool IsValid();
 
   public Error GetErrors()
   {
     var errorsDetail = ValidationResult.Errors.GroupBy(x => new { x.PropertyName }).Select(x => new ErrorDetails(x.Key.PropertyName, x.Select(s => s.ErrorMessage).ToList())).ToList();
 
-    if (!errorsDetail.Any())
-      return null;
+    if (errorsDetail.Count == 0)
+      return new Error(new List<ErrorDetails>());
 
     var errors = new Error(errorsDetail);
 

@@ -1,4 +1,4 @@
-﻿using DezContas.Application.Interfaces;
+using DezContas.Application.Interfaces;
 using DezContas.Domain.Entities;
 using DezContas.Domain.Interfaces.Repositories;
 using PlayPedidos.Application.Services;

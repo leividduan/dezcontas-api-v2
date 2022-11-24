@@ -32,7 +32,7 @@ public class AccountController : ControllerBase
     return Ok(accountsViewModel);
   }
 
-  [HttpGet("{id}", Name = nameof(GetAccountById))]
+  [HttpGet("{id:guid}", Name = nameof(GetAccountById))]
   public async Task<IActionResult> GetAccountById(Guid id)
   {
     var account = await _accountService.GetSingle(x => x.Id == id);
@@ -66,7 +66,7 @@ public class AccountController : ControllerBase
   }
 
   [AcceptVerbs("COPY")]
-  [Route("{id}")]
+  [Route("{id:guid}")]
   public async Task<IActionResult> Duplicate(Guid id)
   {
     var idUser = HttpContext.User.Claims.GetUserIdClaim();
@@ -83,7 +83,7 @@ public class AccountController : ControllerBase
     return Ok(accountViewModel);
   }
 
-  [HttpPut("{id}")]
+  [HttpPut("{id:guid}")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
   public async Task<IActionResult> PutById(Guid id, [FromBody] AccountPutViewModel accountViewModel)
   {
@@ -108,7 +108,7 @@ public class AccountController : ControllerBase
     return Ok(editedAccountViewModel);
   }
 
-  [HttpDelete("{id}")]
+  [HttpDelete("{id:guid}")]
   public async Task<IActionResult> DeleteById(Guid id)
   {
     var account = await _accountService.GetSingle(x => x.Id == id);

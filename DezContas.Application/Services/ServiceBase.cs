@@ -32,12 +32,12 @@ public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEn
     return await _repository.Save();
   }
 
-  public async Task<TEntity> GetSingle(Expression<Func<TEntity, bool>> filter = null, string include = null)
+  public async Task<TEntity> GetSingle(Expression<Func<TEntity, bool>>? filter = null, string? include = null)
   {
     return await _repository.GetSingle(filter, include);
   }
 
-  public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, string include = null)
+  public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>>? filter = null, string? include = null)
   {
     return await _repository.Get(filter, include);
   }

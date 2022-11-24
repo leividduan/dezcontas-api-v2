@@ -1,3 +1,5 @@
+using DezContas.Domain.Entities.Validators;
+
 namespace DezContas.Domain.Entities;
 
 public class Transaction : Entity
@@ -17,8 +19,8 @@ public class Transaction : Entity
   public bool Recurring { get; private set; }
   public bool IsActive { get; private set; }
   public DateTime Date { get; private set; }
-  public Guid Id_Account { get; private set; }
-  public Guid Id_Category { get; private set; }
+  public Guid AccountId { get; private set; }
+  public Guid CategoryId { get; private set; }
 
   //Relationships
   public Account Account { get; set; }
@@ -28,7 +30,7 @@ public class Transaction : Entity
   {
   }
 
-  public Transaction(string name, string description, int installment, int totalInstallment, bool paid, bool recurring, bool isActive, DateTime date, Guid id_Account, Guid id_Category)
+  public Transaction(string name, string description, int installment, int totalInstallment, bool paid, bool recurring, bool isActive, DateTime date, Guid accountId, Guid categoryId)
   {
     Name = name;
     Description = description;
@@ -38,12 +40,13 @@ public class Transaction : Entity
     Recurring = recurring;
     IsActive = isActive;
     Date = date;
-    Id_Account = id_Account;
-    Id_Category = id_Category;
+    AccountId = accountId;
+    CategoryId = categoryId;
   }
 
   public override bool IsValid()
   {
-    return base.IsValid();
+    ValidationResult = new TransactionValidator().Validate(this);
+    return ValidationResult.IsValid;
   }
 }

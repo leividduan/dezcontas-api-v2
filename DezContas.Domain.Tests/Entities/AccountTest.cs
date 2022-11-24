@@ -44,7 +44,7 @@ public class AccountTest
   public void Account_Create_WithNameGreaterThanLimit()
   {
     // Arrange
-    var name = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio et ultricies efficitur. In vel ullamcorper eros. Morbi elit magna, volutpat vulputate";
+    var name = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio et ultricies efficitur. In vel ullamcorper eros. Morbi elit magna, volutpat vulputate";
     var account = new Account(name, string.Empty, true, true, Account.Types.General, Guid.NewGuid());
 
     // Act - Assert
@@ -56,7 +56,7 @@ public class AccountTest
   public void Account_Create_WithDescriptionGreaterThanLimit()
   {
     // Arrange
-    var description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio et ultricies efficitur. In vel ullamcorper eros. Morbi elit magna, volutpat vulputate orci et, aliquet feugiat augue. Aliquam ut lorem egestas nulla posuere laoreet. Sed blandit elit lorem, id interdum mi vestibulum vel. Maecenas tristique porttitor lorem sit amet tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras in ullamcorper leo, ut imperdiet lectus efficiturr.";
+    var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio et ultricies efficitur. In vel ullamcorper eros. Morbi elit magna, volutpat vulputate orci et, aliquet feugiat augue. Aliquam ut lorem egestas nulla posuere laoreet. Sed blandit elit lorem, id interdum mi vestibulum vel. Maecenas tristique porttitor lorem sit amet tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras in ullamcorper leo, ut imperdiet lectus efficiturr.";
     var account = new Account("Banco X", description, true, true, Account.Types.General, Guid.NewGuid());
 
     // Act - Assert

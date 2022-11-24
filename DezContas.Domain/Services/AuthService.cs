@@ -15,25 +15,22 @@ public class AuthService : IAuthService
     _tokenService = tokenService;
   }
 
-  public async Task<dynamic> Login(User user)
+  public async Task<(bool IsLogged, dynamic Data)> Login(User user)
   {
     var savedUser = await _repository.GetSingle(x => x.Username == user.Username);
-    if (savedUser != null)
+    if (savedUser != null && PasswordUtils.VerifyPassword(user.Password, savedUser.Password))
     {
-      if (PasswordUtils.VerifyPassword(user.Password, savedUser.Password))
+      var token = _tokenService.GenerateToken(savedUser);
+      return (true, new
       {
-        var token = _tokenService.GenerateToken(savedUser);
-        return new
-        {
-          id = savedUser.Id,
-          name = savedUser.Name,
-          username = savedUser.Username,
-          email = savedUser.Email,
-          token = token
-        };
-      }
+        id = savedUser.Id,
+        name = savedUser.Name,
+        username = savedUser.Username,
+        email = savedUser.Email,
+        token
+      });
     }
 
-    return null;
+    return (false, null);
   }
 }

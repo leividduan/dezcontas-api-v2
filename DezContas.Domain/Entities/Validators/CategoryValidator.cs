@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace DezContas.Domain.Entities.Validators;
 
@@ -14,6 +14,6 @@ public class CategoryValidator : AbstractValidator<Category>
 
     RuleFor(c => c.Type).NotNull().NotEmpty().WithMessage("{PropertyName} is required").IsInEnum().WithMessage("{PropertyName} has a range of values which does not include '{PropertyValue}'");
 
-    RuleFor(c => c.Id_User).NotNull().NotEmpty().WithMessage("{PropertyName} is required");
+    RuleFor(c => c.UserId).NotNull().NotEmpty().WithMessage("{PropertyName} is required");
   }
 }

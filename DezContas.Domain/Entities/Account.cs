@@ -1,4 +1,4 @@
-﻿using DezContas.Domain.Entities.Validators;
+using DezContas.Domain.Entities.Validators;
 
 namespace DezContas.Domain.Entities;
 
@@ -15,7 +15,7 @@ public class Account : Entity
   public bool IsDefault { get; private set; }
   public bool IsActive { get; private set; }
   public Types Type { get; private set; }
-  public Guid Id_User { get; private set; }
+  public Guid UserId { get; private set; }
 
 
   // Relationships
@@ -25,19 +25,19 @@ public class Account : Entity
   {
   }
 
-  public Account(string name, string description, bool isDefault, bool isActive, Types type, Guid idUser)
+  public Account(string name, string description, bool isDefault, bool isActive, Types type, Guid userId)
   {
     Name = name;
     Description = description;
     IsDefault = isDefault;
     IsActive = isActive;
     Type = type;
-    Id_User = idUser;
+    UserId = userId;
   }
 
-  public void AssociateIdUser(Guid idUser)
+  public void AssociateIdUser(Guid userId)
   {
-    Id_User = idUser;
+    UserId = userId;
   }
 
   public void Edit(string name, string description, bool isDefault, bool isActive, Types type)

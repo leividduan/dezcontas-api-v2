@@ -33,7 +33,7 @@ public class CategoryController : ControllerBase
     return Ok(categoriesViewModel);
   }
 
-  [HttpGet("{id}", Name = nameof(GetCategoryById))]
+  [HttpGet("{id:guid}", Name = nameof(GetCategoryById))]
   public async Task<IActionResult> GetCategoryById(Guid id)
   {
     var category = await _categoryService.GetSingle(x => x.Id == id);
@@ -66,7 +66,7 @@ public class CategoryController : ControllerBase
     return Ok(newCategoryViewModel);
   }
 
-  [HttpPut("{id}")]
+  [HttpPut("{id:guid}")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
   public async Task<IActionResult> PutById(Guid id, [FromBody] CategoryPutViewModel categoryViewModel)
   {
@@ -91,7 +91,7 @@ public class CategoryController : ControllerBase
     return Ok(editedCategoryViewModel);
   }
 
-  [HttpDelete("{id}")]
+  [HttpDelete("{id:guid}")]
   public async Task<IActionResult> DeleteById(Guid id)
   {
     var category = await _categoryService.GetSingle(x => x.Id == id);

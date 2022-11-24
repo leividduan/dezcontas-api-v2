@@ -4,5 +4,5 @@ namespace DezContas.Domain.Interfaces.Services;
 
 public interface IAuthService
 {
-  public Task<dynamic> Login(User user);
+  public Task<(bool IsLogged, dynamic Data)> Login(User user);
 }

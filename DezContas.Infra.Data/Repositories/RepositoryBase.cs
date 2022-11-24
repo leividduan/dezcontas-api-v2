@@ -49,19 +49,15 @@ public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> whe
     return await _context.SaveChangesAsync();
   }
 
-  public Task<TEntity> GetSingle(Expression<Func<TEntity, bool>> filter = null, string include = null)
+  public Task<TEntity> GetSingle(Expression<Func<TEntity, bool>>? filter = null, string? include = null)
   {
-    Task<TEntity?> entity = null;
-
     if (string.IsNullOrEmpty(include))
-      entity = _context.Set<TEntity>().SingleOrDefaultAsync(filter);
+      return _context.Set<TEntity>().SingleOrDefaultAsync(filter);
     else
-      entity = _context.Set<TEntity>().Include(include).SingleOrDefaultAsync(filter);
-
-    return entity;
+      return _context.Set<TEntity>().Include(include).SingleOrDefaultAsync(filter);
   }
 
-  public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null, string include = null)
+  public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>>? filter = null, string? include = null)
   {
     var entities = _context.Set<TEntity>().AsNoTracking();
 

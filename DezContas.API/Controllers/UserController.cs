@@ -32,7 +32,7 @@ namespace DezContas.API.Controllers
       return Ok(usersViewModel);
     }
 
-    [HttpGet("{id}", Name = nameof(GetUserById))]
+    [HttpGet("{id:guid}", Name = nameof(GetUserById))]
     public async Task<IActionResult> GetUserById(Guid id)
     {
       var user = await _userService.GetSingle(x => x.Id == id);
@@ -45,7 +45,7 @@ namespace DezContas.API.Controllers
       return Ok(viewModel);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     public async Task<IActionResult> PutById(Guid id, [FromBody] UserPutViewModel userViewModel)
     {
